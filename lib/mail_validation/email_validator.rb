@@ -5,7 +5,7 @@ module MailValidation
     def validate_each(record, attribute, value)
       begin
         address = Mail::Address.new(value)
-        if address.domain.nil?
+        if address.domain.nil? || !address.domain.match(/\.[A-Za-z]+\z/)
           append_error(record, attribute)
         end
       rescue Mail::Field::ParseError => e

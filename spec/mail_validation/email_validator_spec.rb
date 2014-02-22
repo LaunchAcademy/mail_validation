@@ -22,6 +22,14 @@ describe MailValidation::EmailValidator do
     expect(user).to_not be_valid
   end
 
+  it 'adds an error if the email does not have a TLD' do
+    user = User.new.tap do |u|
+      u.email = 'bademail@example'
+    end
+
+    expect(user).to_not be_valid
+  end
+
   it 'adds an error if the email is invalid' do
     user = User.new.tap do |u|
       u.email = '@.com'
