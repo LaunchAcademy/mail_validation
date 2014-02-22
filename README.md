@@ -1,6 +1,28 @@
 # MailValidation
 
-TODO: Write a gem description
+A simple validator for email addresses. Internally, the [mail](https://github.com/mikel/mail) gem is utilized to parse the email address.
+
+## LoLwut? Why not use a regex?
+
+Rails already depends on the mail gem, so why not utilize that dependency to parse email addresses properly? Framework wise, it makes sense that we would rely on the mail gem for all things email related.
+
+## Usage
+
+With ActiveRecord:
+
+```ruby
+class User < ActiveRecord::Base
+  validates :email, "MailValidation::Email" => true
+end
+```
+
+With just ActiveModel:
+
+```ruby
+class User
+  include ActiveModel::Model
+end
+```
 
 ## Installation
 
